@@ -14,3 +14,28 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+console.log('connected!!')
+
+function renderTask( task ) {
+  var $container = $('#tasks');
+  var $task = $('<li class="task">');
+  $task.text(task.title)
+  // render the image
+
+  $container.append( $task );
+}
+
+function getTasks() {
+  $.getJSON('/project').done(function( tasks ) {
+    tasks.forEach(function( task ) {
+      renderTask( task );
+    })
+  })
+}
+
+
+
+$(function() {
+  getTasks()
+  console.log($.getJSON('/project'))
+})
