@@ -9,9 +9,18 @@ class ProjectController < ApplicationController
 
   def create
     puts params
-    student = {f_name: params[:f_name],l_name: params[:l_name], age: params[:age].to_i, email: params[:email], slack: params[:slack]}
-    Student.create student
-    render :json => Student.last
+    task = {
+      issue_name: params[:title],
+      task_body: params[:body],
+      upvotes: 0,
+      downvotes: 0}
+    Task.create task
+    render :json => Task.last
   end
 
 end
+    # t.string   "repo_name"
+    # t.string   "issue_name"
+    # t.integer  "upvotes"
+    # t.integer  "downvotes"
+    #    t.text     "task_body"
