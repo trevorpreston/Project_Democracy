@@ -35,7 +35,52 @@ function getTasks() {
 
 
 
+
+
 $(function() {
   getTasks()
   console.log($.getJSON('/project'))
+
+
+
+  function createTask(e){
+
+    const newTitle = $('#new-title')
+    const newBody = $('#new-body')
+
+    e.preventDefault();
+    let $children = $(e.target).children();
+    let data = {
+      title: newTitle.val(),
+      body: newBody.val()
+    }
+
+    $.post('/project',data).done( (response) => {
+      console.log(response);
+    })
+
+
+  }
+
+  $('form').submit(createTask);
+  // $('#submit-btn').click(function(event){
+  //     event.preventDefault()
+  //     const newTitle = $('#new-title')
+  //     const newBody = $('#new-body')
+  //     var data = {
+  //       title: newTitle.val(),
+  //       body: newBody.val()
+  //     }
+  //     $.post('/project', data).done( (response) => {
+  //     console.log(response);
+  //   })
+  //     event.target.reset()
+  // })
+
+
+
+
 })
+
+
+

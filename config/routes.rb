@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :project, only: [:index]
-  get '/project', to: 'project#index'
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  resources :project
+  # get '/project', to: 'project#index'
   root 'welcome#index'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
