@@ -3,13 +3,21 @@ class SuggestionsController < ApplicationController
     render :json => Task.all
   end
 
+  def show
+    @suggestion = Task.find(params[:id])
+    render :json => @suggestion
+  end
+
   def create
     puts params
     task = {
       issue_name: params[:title],
       task_body: params[:body],
+      create_by: current_user.id,
       upvotes: 0,
-      downvotes: 0}
+      downvotes: 0,
+      voted: {}
+    }
     Task.create task
     render :json => Task.last
   end

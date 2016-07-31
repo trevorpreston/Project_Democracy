@@ -26,12 +26,24 @@ function renderCurrentTask(currentTask ) {
 }
 
 function renderSuggestedTask(suggestedTask ) {
+
   var $container = $('#suggestions');
   var $suggestedTask = $('<li class="suggestedTask">');
-  $suggestedTask.text(suggestedTask.issue_name+":  "+suggestedTask.task_body)
+  var $editBtn = $('<button id="edit-btn"> edit </button>')
+  var $deleteBtn = $('<button class="delete-btn"> delete </button>')
+  var $userId = parseInt($('#user-id').text())
+  console.log(suggestedTask.create_by)
+  console.log($userId)
+  $suggestedTask.text(suggestedTask.issue_name+":  "+suggestedTask.task_body +  "submitted by: " + suggestedTask.create_by)
+  $suggestedTask.attr("id", suggestedTask.id)
   // render the image
 
-  $container.append( $suggestedTask );
+  $container.append( $suggestedTask )
+  if ($userId == suggestedTask.create_by){
+    $suggestedTask.append( $editBtn, $deleteBtn )
+  }
+  $('.delete-btn').on('click', deleteSuggested)
+
 }
 
 function getCurrent() {
@@ -47,6 +59,19 @@ function getSuggested() {
     suggestedTasks.forEach(function( suggestedTask ) {
       renderSuggestedTask( suggestedTask );
     })
+  })
+}
+
+function deleteSuggested(e){
+  console.log($(e.target).parent())
+  let id = $(e.target).parent().attr("id")
+  let url = '/suggestions/'+id
+  $.ajax({
+    url: url,
+    method: 'delete'
+  }).done(()=>{
+    console.log("deleted")
+    $(e.target).parent().remove()
   })
 }
 
@@ -66,14 +91,12 @@ $(function() {
     const newTitle = $('#new-title')
     const newBody = $('#new-body')
 
-    e.preventDefault();
-    let $children = $(e.target).children();
     let data = {
       title: newTitle.val(),
       body: newBody.val()
     }
 
-    $.post('/project',data).done( (response) => {
+    $.post('/suggestions',data).done( (response) => {
       console.log(response);
     })
 
@@ -81,19 +104,8 @@ $(function() {
   }
 
   $('form').submit(createTask);
-  // $('#submit-btn').click(function(event){
-  //     event.preventDefault()
-  //     const newTitle = $('#new-title')
-  //     const newBody = $('#new-body')
-  //     var data = {
-  //       title: newTitle.val(),
-  //       body: newBody.val()
-  //     }
-  //     $.post('/project', data).done( (response) => {
-  //     console.log(response);
-  //   })
-  //     event.target.reset()
-  // })
+
+
 
 
 
