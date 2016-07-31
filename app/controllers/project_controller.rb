@@ -5,4 +5,13 @@ class ProjectController < ApplicationController
     parsed_body = JSON.parse(response.body)
     render json: parsed_body
   end
+
+
+  def create
+    puts params
+    student = {f_name: params[:f_name],l_name: params[:l_name], age: params[:age].to_i, email: params[:email], slack: params[:slack]}
+    Student.create student
+    render :json => Student.last
+  end
+
 end

@@ -35,7 +35,20 @@ function getTasks() {
 
 
 
+
+
 $(function() {
   getTasks()
   console.log($.getJSON('/project'))
+
+;
+
+  $('#submit-btn').click(function(event){
+      event.preventDefault()
+      const newTitle = $('#new-title')
+      const newBody = $('#new-body')
+      var data = JSON.stringify({title: newTitle.val(), body: newBody.val()})
+      console.log(data)
+  })
+
 })
