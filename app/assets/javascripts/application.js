@@ -16,19 +16,36 @@
 //= require_tree .
 console.log('connected!!')
 
-function renderTask( task ) {
-  var $container = $('#tasks');
-  var $task = $('<li class="task">');
-  $task.text(task.title)
+function renderCurrentTask(currentTask ) {
+  var $container = $('#in-progress');
+  var $currentTask = $('<li class="currentTask">');
+  $currentTask.text(currentTask.title)
   // render the image
 
-  $container.append( $task );
+  $container.append( $currentTask );
 }
 
-function getTasks() {
-  $.getJSON('/project').done(function( tasks ) {
-    tasks.forEach(function( task ) {
-      renderTask( task );
+function renderSuggestedTask(suggestedTask ) {
+  var $container = $('#suggestions');
+  var $suggestedTask = $('<li class="suggestedTask">');
+  $suggestedTask.text(suggestedTask.issue_name+":  "+suggestedTask.task_body)
+  // render the image
+
+  $container.append( $suggestedTask );
+}
+
+function getCurrent() {
+  $.getJSON('/project').done(function( currentTasks ) {
+    currentTasks.forEach(function( currentTask ) {
+      renderCurrentTask( currentTask );
+    })
+  })
+}
+
+function getSuggested() {
+  $.getJSON('/suggestions').done(function( suggestedTasks ) {
+    suggestedTasks.forEach(function( suggestedTask ) {
+      renderSuggestedTask( suggestedTask );
     })
   })
 }
@@ -38,7 +55,8 @@ function getTasks() {
 
 
 $(function() {
-  getTasks()
+  getCurrent()
+  getSuggested()
   console.log($.getJSON('/project'))
 
 
