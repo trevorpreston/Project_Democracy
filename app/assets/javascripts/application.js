@@ -40,7 +40,7 @@ function renderSuggestedTask(suggestedTask ) {
 
   $container.append( $suggestedTask )
   if ($userId == suggestedTask.create_by){
-    $suggestedTask.append( $editBtn, $deleteBtn )
+    $suggestedTask.append( $deleteBtn )
   }
   $('.delete-btn').on('click', deleteSuggested)
 
@@ -63,7 +63,6 @@ function getSuggested() {
 }
 
 function deleteSuggested(e){
-  console.log($(e.target).parent())
   let id = $(e.target).parent().attr("id")
   let url = '/suggestions/'+id
   $.ajax({
@@ -73,6 +72,10 @@ function deleteSuggested(e){
     console.log("deleted")
     $(e.target).parent().remove()
   })
+}
+
+function editSuggested(e){
+
 }
 
 
