@@ -14,8 +14,8 @@ class SuggestionsController < ApplicationController
       issue_name: params[:title],
       task_body: params[:body],
       create_by: current_user.id,
-      upvotes: 0,
-      downvotes: 0,
+      upvotes: params[:ups],
+      downvotes: params[:downs],
       voted: {}
     }
     Task.create task
@@ -27,18 +27,22 @@ class SuggestionsController < ApplicationController
   end
 
   def update
-    task = {
-      issue_name: params[:title],
-      task_body: params[:body]
-    }
-    Task.find(params[:id]).update task
-    render :json => task
+    # task = {
+    #   upvotes: params[:upvotes],
+    #   downvotes: params[:downvotes]
+    # }
+    Task.find(params[:id]).update permitted_params
+    # render :json => task
   end
 
   def destroy
     task =Task.find(params[:id])
     task.destroy
     render :json => true
+  end
+
+  def permitted_params
+    params.permit(:upvotes, :downvotes)
   end
 
 end

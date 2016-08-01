@@ -1,22 +1,43 @@
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete)%>
-  <%= puts current_user.id %>
-  </li>
-  <p id="user-id"> <%= current_user.id %> </p>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>
-  </li>
-<% end %>
 
-<h1>Project Name</h1>
+<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+<div id="upper-container">
+  <nav>
+    <ul id="nav">
+    <div id="logo">
+    </div>
 
-<div id="tasks-container">
-  <h3></h3>
+      <% if user_signed_in? %>
+        <li class="link-btn">
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete)%>
+        <%= puts current_user.id %>
+        </li>
+      <% else %>
+        <li id="login-btn">
+          <%= link_to('Login', new_user_session_path)  %>
+        </li>
+      <% end %>
+    </ul>
+
+  </nav>
+  <p id="project-intro">This project is:</p>
+  <h1 id="project-title"><!-- project title renders here --> </h1>
+  <a href="" id="project-url" class="link-btn">check out the repo on github</a>
   <ul id="in-progress">
+    <h2 id="features-header">Current features in development:</h2>
     <!--  current tasks will be rendered here-->
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
+    <li>SUB DATA: blah blah blah blah</li>
   </ul>
+</div>
+
+<div id="suggested-tasks-container">
   <form>
     <input type="text" name="title" id="new-title">
     <input type="text" name="body" id="new-body">
@@ -28,3 +49,4 @@
   </ul>
 
 </div>
+<!--  -->
