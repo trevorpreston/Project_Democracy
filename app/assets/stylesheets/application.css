@@ -13,3 +13,97 @@
  *= require_tree .
  *= require_self
  */
+
+
+html {
+  margin: 0px;
+  font-family: 'Arimo', sans-serif;
+
+}
+
+body {
+  margin: 0px;
+}
+
+p  {
+  margin: 0px
+}
+
+ul {
+  list-style: none;
+  margin:  0px;
+}
+
+nav{
+  height: 50px;
+  margin: 0px;
+  background-color: white
+}
+
+a{
+  color: white;
+  font-weight: bold;
+  text-decoration: none
+}
+
+#nav li{
+  color: white;
+  float: right;
+  margin-right: 50px;
+  margin-top: 7px;
+  background: linear-gradient(to bottom right, #00cc99, #3333ff);
+  border-radius: 15px;
+  text-align: center;
+  padding: 8px 15px;
+}
+
+#project-intro {
+  margin-top: 50px
+}
+
+#in-progress {
+  margin: auto;
+  margin-top: 30px;
+  background-color: white;
+  max-height: 50%;
+  max-width: 700px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 64px -15px rgba(0,0,0,0.75);
+}
+
+#in-progress li{
+/*  margin-left: -40px*/
+  color: grey
+}
+
+#user-id{
+  color: grey;
+  float: bottom;
+}
+#project-title{
+  font-family: 'Bungee', cursive;
+  font-size: 50px;
+  margin-top: 20px;
+  margin-bottom: 8px
+}
+#upper-container{
+  color: white;
+  background: linear-gradient(to bottom right, #00cc99, #3333ff);
+  text-align: center;
+  height: 45vh
+}
+
+#project-url:hover {
+  background-color: #00b386
+}
+
+#project-url{
+  padding: 7px 10px;
+  font-size: 12px;
+  margin-bottom: 300px;
+  background-color: #00cc99;
+  border-radius: 10px
+}
+
+
