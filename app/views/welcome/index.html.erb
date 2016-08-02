@@ -19,14 +19,19 @@
     </ul>
 
   </nav>
-  <p id="project-intro">This project is:</p>
+  <p id="project-intro">You're contributing to:</p>
   <h1 id="project-title"><!-- project title renders here --> </h1>
   <a href="" id="project-url" class="link-btn">check out this repo on github</a>
   <div  id="in-progress">
-    <h2 id="features-header">Current features in development:</h2>
+    <div id="features-header">
+      <h2 >Current features in development:</h2>
+      <p>the developer is currently working on these features:</p>
+    </div>
+
     <p id="spacer"></p>
     <ul>
       <!--  current tasks will be rendered here-->
+<!--       <li>SUB DATA: blah blah blah blah</li>
       <li>SUB DATA: blah blah blah blah</li>
       <li>SUB DATA: blah blah blah blah</li>
       <li>SUB DATA: blah blah blah blah</li>
@@ -35,6 +40,13 @@
       <li>SUB DATA: blah blah blah blah</li>
       <li>SUB DATA: blah blah blah blah</li>
       <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li>
+      <li>SUB DATA: blah blah blah blah</li> -->
     </ul>
   </div>
 </div>
@@ -42,16 +54,22 @@
 <div id="suggested-tasks-container">
   <div id="suggestion-form">
     <h1>Suggest a new feature!</h1>
+    <p>enter a feature you'd like to see added to this app.</p>
     <form>
-      <input type="text" name="title" id="new-title">
-      <input type="text" name="body" id="new-body">
+      <input type="text" name="title" id="new-title" value="subject">
+      <input type="text" name="body" id="new-body" value="description">
       <input type="submit" name="submit-btn" value="submit" id="submit-btn">
     </form>
   </div>
 
+  <div id="suggestions-container">
+    <h1>Current suggested features</h1>
     <ul id="suggestions">
     <!--  albums will be rendered -->
-  </ul>
+    </ul>
+
+  </div>
+
 
 </div>
 <!--  -->

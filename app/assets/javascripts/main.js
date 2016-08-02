@@ -37,8 +37,8 @@ function renderSuggestedTask(suggestedTask ) {
   var $suggestedTask = $('<li class="suggestedTask">');
   var $editBtn = $('<button id="edit-btn"> edit </button>')
   var $deleteBtn = $('<button class="delete-btn" onclick="deleteSuggested(this);"> delete </button>')
-  var $upvote = $('<button class="upvote-btn" onclick="upvoteSuggested(this);"> ^ up </button>')
-  var $downvote = $('<button class="downvote-btn" onclick="upvoteSuggested(this);"> v down </button>')
+  var $upvote = $('<button class="upvote-btn" onclick="upvoteSuggested(this);"></button>')
+  var $downvote = $('<button class="downvote-btn" onclick="upvoteSuggested(this);"></button>')
   var $userId = parseInt($('#user-id').text())
   console.log(suggestedTask.create_by)
 
@@ -47,9 +47,9 @@ function renderSuggestedTask(suggestedTask ) {
   $suggestedTask.attr("id", suggestedTask.id)
   $suggestedTask.attr("up", suggestedTask.upvotes)
   $suggestedTask.attr("down", suggestedTask.downvotes)
-  $suggestedTask.text(suggestedTask.issue_name+":  "+suggestedTask.task_body +  "   << current up/down: " + suggestedTask.upvotes +"/" +suggestedTask.downvotes+ "  >>  submitted by: " + suggestedTask.create_by)
+  $suggestedTask.text( "|| current up/down: " + suggestedTask.upvotes +"/" +suggestedTask.downvotes+ "  ||" + suggestedTask.issue_name+":  "+suggestedTask.task_body)
 
-  $suggestedTask.append( $upvote, $downvote)
+  $suggestedTask.prepend( $upvote, $downvote)
   if ($userId == suggestedTask.create_by){
     $suggestedTask.append( $deleteBtn )
   }
@@ -77,6 +77,30 @@ function upvoteSuggested(d) {
 
   })
 }
+
+function upvoteSuggested(d) {
+
+  console.log('DOWNVOTE CLICKED')
+  console.log(d.parentElement.getAttribute("tname"))
+  let id = d.parentElement.getAttribute("id")
+  let up = parseInt(d.parentElement.getAttribute("up"))
+  let down = parseInt(d.parentElement.getAttribute("down"))
+  let url = '/suggestions/'+id
+  let data ={
+    upvotes: up,
+    downvotes: down + 1
+  }
+  $.ajax({
+    url: url,
+    method: 'put',
+    data: data
+  }).done(()=>{
+    this.hide().show(0);
+    console.log("upvoted")
+
+  })
+}
+
 
 
 
