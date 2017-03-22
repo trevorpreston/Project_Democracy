@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20160731222047) do
     t.string   "issue_name"
     t.integer  "upvotes"
     t.integer  "downvotes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "task_body"
-    t.string   "voted"
+    t.string   "voted",      default: [],              array: true
     t.integer  "create_by"
   end
 
